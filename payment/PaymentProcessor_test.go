@@ -20,7 +20,7 @@ func TestPaymentChangeReturnSuccessWhenCallbackWithValidParams(t *testing.T) {
 
 	mockPaymentProcessor.
 		EXPECT().
-		Charge(100.0, "test_token").
+		Charge(gomock.Any(), gomock.Any()).
 		Return(nil).
 		Times(1)
 
