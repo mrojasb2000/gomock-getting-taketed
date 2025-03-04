@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func testChange(t *testing.T) {
+func TestPaymentChangeReturnSuccessWhenCallbackWithValidParams(t *testing.T) {
 	mockCtl := gomock.NewController(t)
 	defer mockCtl.Finish()
 
@@ -20,11 +20,11 @@ func testChange(t *testing.T) {
 
 	mockPaymentProcessor.
 		EXPECT().
-		Charge(100, "test_token").
+		Charge(100.0, "test_token").
 		Return(nil).
 		Times(1)
 
-	err := testPaymentProcessorClient.Charge(100, "test_token")
+	err := testPaymentProcessorClient.Charge(100.0, "test_token")
 
 	assert.Nil(t, err)
 }
